@@ -11,19 +11,19 @@ const Form = props => {
 
     const [post, setPost] = useState([]);
 
-    // server error
+ 
     const [serverError, setServerError] = useState("");
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [errors, setErrors] = useState({
-        name: "", // strings describing error that has occured, set from yup in schema when invalid
+        name: "", 
         email: "",
         password: "",
         
         terms: ""
       });
   
-    // managing state for our form inputs
+
 
 
 const formSchema = yup.object().shape({
@@ -40,7 +40,7 @@ useEffect(() => {
     );
     formSchema.isValid(formState).then(isFormValid => {
       console.log("is form valid?", isFormValid);
-      setButtonDisabled(!isFormValid); // disabled= false if form is valid
+      setButtonDisabled(!isFormValid); 
     });
   }, [formState]);
 
@@ -66,26 +66,25 @@ useEffect(() => {
         setServerError(null)
     })
     .catch(err => {
-        // this is where we could create a server error in the form! if API request fails, say for authentication (that user doesn't exist in our DB),
-        // set serverError
+        
         setServerError("oops! something happened!");
       });
   };
 
   const validateChange = e => {
-    // get the value out of schema at key "e.target.name" --> "name="
+    
     yup
       .reach(formSchema, e.target.name)
-      .validate(e.target.name === "terms" ? e.target.checked : e.target.value) // value in input
+      .validate(e.target.name === "terms" ? e.target.checked : e.target.value) 
       .then(inputIsValid => {
-        // if inputIsValid is true, then erase any errors in error state at that key/value in errors
+        
         setErrors({
           ...errors,
           [e.target.name]: ""
         });
       })
       .catch(err => {
-        // if failing validation, set error in state
+        
         setErrors({
           ...errors,
           [e.target.name]: err.errors[0]
@@ -94,19 +93,19 @@ useEffect(() => {
   };
   
   const inputChange = e => {
-    // use persist with async code
-    e.persist(); // necessary because we're passing the event asyncronously and we need it to exist even after this function completes (which will complete before validateChange finishes)
+    
+    e.persist(); /
     console.log("input changed!", e.target.value);
-    console.log("name of input that fired event", e.target.name); // [e.target.name]: e.target.value --> computed props
+    console.log("name of input that fired event", e.target.name); 
 
     const newFormData = {
       ...formState,
       [e.target.name]:
-        e.target.name === "terms" ? e.target.checked : e.target.value // // remember value of the checkbox is in "checked" and all else is "value"
+        e.target.name === "terms" ? e.target.checked : e.target.value /
     };
 
-    validateChange(e); // for each change in input, do inline validation
-    setFormState(newFormData); // update state with new data
+    validateChange(e); 
+    setFormState(newFormData); 
   };
 
 
