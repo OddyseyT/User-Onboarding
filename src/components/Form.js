@@ -94,14 +94,14 @@ useEffect(() => {
   
   const inputChange = e => {
     
-    e.persist(); /
+    e.persist(); 
     console.log("input changed!", e.target.value);
     console.log("name of input that fired event", e.target.name); 
 
     const newFormData = {
       ...formState,
       [e.target.name]:
-        e.target.name === "terms" ? e.target.checked : e.target.value /
+        e.target.name === "terms" ? e.target.checked : e.target.value 
     };
 
     validateChange(e); 
