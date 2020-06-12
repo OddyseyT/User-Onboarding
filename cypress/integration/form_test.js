@@ -9,4 +9,13 @@ context("Form -- testing our form inputs", function () {
         cy.get('[data-cy="terms"]').check().should("be.checked");
         cy.get("[data-cy=submit]").click();
     })
-});
+
+it("clear text and check for errors",
+    function () {
+        cy.get('[data-cy="name"]').type("P!nk").clear();
+        cy.get('[data-cy="email"]').type("Stunner@gmail.com").clear()
+        cy.get('[data-cy="password"]').type("StupidGirls").clear()
+        cy.get('[data-cy="terms"]').check().uncheck();
+        
+    });
+})
