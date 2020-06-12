@@ -121,6 +121,7 @@ useEffect(() => {
         <input
           id="name"
           type="text"
+          data-cy="name"
           name="name"
           onChange={inputChange}
           value={formState.name}
@@ -133,6 +134,7 @@ useEffect(() => {
           id="email"
           type="text"
           name="email"
+          data-cy="email"
           onChange={inputChange}
           value={formState.email}
         />
@@ -145,6 +147,7 @@ useEffect(() => {
           <input 
             id="password"
             type="password"
+            data-cy="password"
             name="password"
             onChange={inputChange}
             value={formState.password} />
@@ -156,6 +159,7 @@ useEffect(() => {
         <input
           id="terms"
           type="checkbox"
+          data-cy="terms"
           name="terms"
           checked={formState.terms}
           onChange={inputChange}
@@ -165,7 +169,7 @@ useEffect(() => {
           <p className="error">{errors.terms}</p>
          : null}
       </label>
-      <button type="submit" disabled={buttonDisabled}>
+      <button data-cy="submit" type="submit" disabled={buttonDisabled}>
         Submit
       </button>
       <pre>{JSON.stringify(post, null, 2)}</pre>
